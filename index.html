@@ -9,23 +9,46 @@
     <script type="module" src="index.js" defer></script> 
 </head>
 <body>
-    <div>
-        <form id="form" class="form">        
-            <div class="form-control">
-                <label for="lblPokemon">Qual pokemon você quer encontrar?</label>
-                <input type="text" id="inptNomePokemon" class="inptNomePokemon" placeholder="Digite o nome do pokemon"/>
-                <button id="btnPesquisar" class="btnPesquisar">Pesquisar</button>                
+    <div id="cabecalho">     
+        <form id="form" class="form">
+            <label for="lblPokemon">Pesquisa de pokemons </label>
+            <input type="text" id="inptNomePokemon" class="inptNomePokemon" placeholder=" Digite o nome do pokemon"/>
+        </form>    
+    </div>
+
+    <div id="esquerda">
+        <div id="dvEsquerdaCima"></div>
+        <div id="esquerdaMeio">
+            <div class="dvImagensE" id="dvImagensE"></div>
+        </div>
+        <div id="esquerdaBaixo"><img src="" alt=""></div>
+    </div>
+
+    <div id="dvPrincipal">
+        <div id="dvPrincipalCima"></div>
+        <div id="dvPrincipalMeio">
+            <div class="dvContainerImagens" id="dvContainerImagens"></div>
+        </div>        
+        <div id="dvPrincipalBaixo">
+            <div id="dvPrincipalBaixoEspacamento"></div>
+            <div id="dvBotoes">
+                <button id="btnPrimeiroImagem" class="btnPimeiroImagem">Primeiro</button> 
+                <button id="btnAnteriorImagem" class="btnAnteriorImagem">Anterior</button>            
+                <button id="btnProximaImagem" class="btnProximaImagem">Proximo</button> 
+                <button id="btnUltimoImagem" class="btnUltimoImagem">Ultimo</button>
             </div>
-        </form>
-        <div class="dvDadosGerais" id="dvDadosGerais"></div>
+            <div class="dvContador" id="dvContador"></div>
+        </div>
+    </div>
 
-        <div class="dvContainerImg" id="dvContainerImg"></div>
-        <div class="dvContainerTexto" id="dvContainerTexto"></div>
+    <div id="direita">
+        <div id="dvDireitaCima"></div>        
+        <div id="direitaMeio">
+            <div class="dvImagensD" id="dvImagensD"></div>
+        </div>
+        <div id="dvDireitaBaixo"></div>
+    </div>
 
-        <div class="contador" id="contador"></div>
-        <button id="btnAnteriorImagem" class="anteriorImagem">Anterior</button>            
-        <button id="btnProximaImagem" class="proximaImagem">Proxima</button> 
-
-    </div>      
+    <div id="dvRodape"></div>
 </body>
 </html>

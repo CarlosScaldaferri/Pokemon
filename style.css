@@ -1,55 +1,264 @@
+*{
+    margin: 0;
+    padding: 0;
+    zoom: unset;
+}
 body{
-    display: flex;    
-    align-items: center;
+    color: white;
+    background-image: url("/imagens/Pokebola.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+#cabecalho{
+    /* background-color: aqua; */
+    height: 100px;
+    width: 1915px;
+    margin: 0 auto;
+    display: flex;
     justify-content: center;
-    flex-direction: center;
-
-}
-#dvContainerImg {
-    width: 100px;
-    max-width: 100px;
-    height: 100px;
-    max-height: 100px;
+    align-items: center;
+    font-size: x-large;
     position: relative;
 }
-#dvContainerImg img{
-    opacity: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: opacity 800ms;
-}
-#dvContainerImg img.selected { 
-    opacity: 1;
-}
-
-
-
-#dvContainerTexto {
-    width: 100px;
-    max-width: 100px;
+#dvRodape{
+    /* background-color: chocolate; */
     height: 100px;
-    max-height: 100px;
+    width: 1915px;
+    clear: both;
+    margin: 0 auto;
+    text-align: center;
+    color: black;
+    font-size: x-large;
     position: relative;
 }
-#dvContainerTexto relatorio{
-    opacity: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: opacity 800ms;
-}
-#dvContainerTexto relatorio.selected { 
-    opacity: 1;
+
+#esquerda{
+    /* background-color: chartreuse;  */
+    height: 650px;
+    width: 630px;
+    float: left;
+    position: relative;
 }
 
-#relatorio {
-    width: 100px;
-    max-width: 100px;
+#dvEsquerdaCima{
+    /* background-color: violet; */
+    height: 330px;
+    width: 300px;
+    float: right;
+    position: relative;
+    align-items: center;
+}
+#esquerdaMeio{
+    /* background-color: brown; */
+    height: 130px;
+    width: 630px;
+    float: left;
+}
+#esquerdaBaixo{
+    /* background-color: darkcyan; */
+    height: 195px;
+    width: 500px;
+    float: right;
+}
+
+#direita{
+    /* background-color: darkgoldenrod; */
+    height: 650px;
+    width: 630px;
+    float: right;
+    text-align: left;
+}
+#dvDireitaCima{
+    /* background-color: violet; */
+    height: 330px;
+    width: 600px;
+    float: left;
+    text-align: right;
+    font-size: x-large;
+    line-height: 1.5;
+    font-style: italic;
+    
+}
+#direitaMeio{
+    /* background-color: brown; */
+    height: 130px;
+    width: 630px;
+    float: left;
+}
+#dvDireitaBaixo{
+    /* background-color: darkcyan; */
+    height: 195px;
+    width: 600px;
+    float: left;
+    text-align: right;
+    font-size: x-large;
+    line-height: 1.5;
+    color: black;
+    font-style: italic;
+}
+
+#dvPrincipal{
+    /* background-color: black;  */
+    height: 650PX;
+    width: 640px;
+    float: left;
+    text-align: center; 
+   
+}
+#dvPrincipalCima{
+    /* background-color: darkcyan; */
+    height: 150px;
+    width: 670px;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+}
+#dvPrincipalMeio{
+    /* background-color: brown; */
+    height: 350px;
+    width: 670px;   
+    float: left; 
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+#dvPrincipalBaixo{
+    /* background-color: blue;  */
+    height: 100px;  
+    width: 670px;   
+    float: left;    
+}
+
+#dvPrincipalBaixoEspacamento{
+    /* background-color: darkslateblue; */
+    height: 65px;  
+    width: 670px;    
+}
+
+#dvImagensE{        
+    /* background-color: chocolate; */
+    font-style: italic;
+    height: 130px;
+    width: 630px;
+    text-align: right;
+    float: right;
+    line-height: 1.5em;
+}
+
+#dvImagensD{  
+    /* background-color: aqua; */
+    font-style: italic;
+    height: 130px;
+    width: 630px;  
+    text-align: left;
+    float:left;
+    line-height: 1.5em;
+}
+
+#img{
+    height: 300px;
+    width: 300px;    
+}
+
+#imgP{
     height: 100px;
-    max-height: 100px;
-    position: relative;    
+    width: 100px;  
+    opacity: 0.5;  
 }
 
+#dvContador{
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#btnPrimeiroImagem{
+  background-color: #FFFFFF;
+  border: 0;
+  border-radius: .5rem;
+  box-sizing: border-box;
+  color: #111827;
+  font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  padding: .20rem 0.3rem;
+  text-align: center;
+  text-decoration: none #D1D5DB solid;
+  text-decoration-thickness: auto;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+#btnUltimoImagem{
+    background-color: #FFFFFF;
+    border: 0;
+    border-radius: .5rem;
+    box-sizing: border-box;
+    color: #111827;
+    font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: .875rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    padding: .20rem 0.3rem;
+    text-align: center;
+    text-decoration: none #D1D5DB solid;
+    text-decoration-thickness: auto;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  #btnProximaImagem{
+    background-color: #FFFFFF;
+    border: 0;
+    border-radius: .5rem;
+    box-sizing: border-box;
+    color: #111827;
+    font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: .875rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    padding: .20rem 0.3rem;
+    text-align: center;
+    text-decoration: none #D1D5DB solid;
+    text-decoration-thickness: auto;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  #btnAnteriorImagem{
+    background-color: #FFFFFF;
+    border: 0;
+    border-radius: .5rem;
+    box-sizing: border-box;
+    color: #111827;
+    font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: .875rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    padding: .20rem 0.3rem;
+    text-align: center;
+    text-decoration: none #D1D5DB solid;
+    text-decoration-thickness: auto;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+
+  #inptNomePokemon{
+    padding: .40rem 0.3rem;
+  }
+
+  
