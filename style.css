@@ -42,10 +42,10 @@ body{
 }
 
 #dvEsquerdaCima{
-    /* background-color: violet; */
+    /* background-color: violet;  */
     height: 330px;
-    width: 300px;
-    float: right;
+    width: 630px;
+    float: left;
     position: relative;
     align-items: center;
 }
@@ -257,8 +257,31 @@ body{
     touch-action: manipulation;
   }
 
-  #inptNomePokemon{
-    padding: .40rem 0.3rem;
+  #btnPesquisar{
+    background-color: #FFFFFF;
+    border: 0;
+    border-radius: .5rem;
+    box-sizing: border-box;
+    color: #111827;
+    font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: .875rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    padding: .20rem 0.3rem;
+    text-align: center;
+    text-decoration: none #D1D5DB solid;
+    text-decoration-thickness: auto;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
   }
 
-  
+  #inptNomePokemon{
+    padding: .40rem 0.3rem;
+    border-color: white;
+    border: none !important;
+    border-color: transparent !important;
+  }
+
