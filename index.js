@@ -108,7 +108,7 @@ function criaFilhos()
     img = document.createElement(`img`)
     img.src = pokemonsFiltrados[IndiceAtual].img
     img.id = "img"
-    img.className = "img"        
+    img.className = "img" 
     dvContainerImagens.appendChild(img)
 
     textoD = document.createElement("relatorio")  
@@ -142,6 +142,7 @@ function criaFilhosPequenos()
       img.src = pokemonsFiltrados[IndiceAtual + index].img.replace("imagens", "imagensPequenas")
       img.id = "imgP"
       img.className = "imgP" 
+      img.onclick = function() {reposiciona(img)}    
       dvImagensD.appendChild(img)
     }
   }
@@ -151,9 +152,9 @@ function criaFilhosPequenos()
     if (IndiceAtual - index > 0)
     {      
       img = document.createElement(`img`)
-      img.src = pokemonsFiltrados[IndiceAtual - index -1] .img.replace("imagens", "imagensPequenas")
+      img.src = pokemonsFiltrados[IndiceAtual - index -1].img.replace("imagens", "imagensPequenas")
       img.id = "imgP"
-      img.className = "imgP" 
+      img.className = "imgP"
       dvImagensE.appendChild(img)
     }
   }
