@@ -1,116 +1,47 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <script type="module" src="index.js" defer></script> 
-</head>
-<body>
-    <div id="cabecalho">     
-        <form id="form" class="form">                
-            <label for="lblPokemon">Pesquisa de pokemons </label>
-            <input type="text" id="inptNomePokemon" class="inptNomePokemon" placeholder=" Digite o nome do pokemon"/>
-            <button id="btnPesquisar" class="btnPesquisar">Pesquisar</button>                        
-        </form>    
-    </div>
-
-    <div id="esquerda">
-        <div id="dvEsquerdaCima"><img src=""></div>
-        <div id="esquerdaMeio">
-            <div class="dvImagensE" id="dvImagensE"></div>
-        </div>
-        <div id="esquerdaBaixo"><img src="" alt=""></div>
-    </div>
-
-    <div id="dvPrincipal">
-        <div id="dvPrincipalCima"></div>
-        <div id="dvPrincipalMeio">
-            <img src="./imagens/Circulo.png" id="imgCirculo">
-            <div class="dvContainerImagens" id="dvContainerImagens"></div>            
-        </div>        
-        <div id="dvPrincipalBaixo">
-            <div id="dvPrincipalBaixoEspacamento"></div>
-            <div id="dvBotoes">
-                <button id="btnPrimeiroImagem" class="btnPimeiroImagem">Primeiro</button> 
-                <button id="btnAnteriorImagem" class="btnAnteriorImagem">Anterior</button>            
-                <button id="btnProximaImagem" class="btnProximaImagem">Proximo</button> 
-                <button id="btnUltimoImagem" class="btnUltimoImagem">Ultimo</button>
-            </div>
-            <div class="dvContador" id="dvContador"></div>
-        </div>
-    </div>
-
-    <div id="direita">
-        <div id="dvDireitaCima"></div>
-        <div id="direitaMeio">
-            <div class="dvImagensD" id="dvImagensD"></div>
-        </div>
-        <div id="dvDireitaBaixo"></div>
-    </div>
-
-    <div id="dvRodape"></div>
-</body>
-</html> -->
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de pokemons</title>
     <link rel="stylesheet" href="style.css">
     <script type="module" src="index.js" defer></script> 
 </head>
 <body>
-    <div id="dv1"></div>
-    <div id="dv2">
-        <div id="dv21">
-            <div id="dv211"><img id="dv2111" src="./imagens/Fundo.png" ></div>
-            <div id="dv212">
-                <div id="dv2121"></div>
+    <div class="dvPrincipal">    
+        <div class="dvBarras">
+            <div class="dvCima">
+                <div class="dvTextoImgemCima">
+                    <img src="./imagens/FundoCima.png" alt="" class="imgFundoCima">
+                    <img src="./imagens/Logo.png" alt="" class="imgLogo">
+                    <div class="dvTextoCima"></div>
+                </div>
+            </div>
+            <div class="dvCentro">
+                <div class="dvCentroEsquerda"></div>
+                <div class="dvCentroMeio"></div>
+                <div class="dvCentroDireita"></div>
+            </div>
+            <div class="dvBaixo"> 
+                <div class="dvTextoImgemBaixo">               
+                    <img src="./imagens/FundoBaixo.png" alt="" class="imgFundoBaixo">
+                    <div class="dvTextoBaixo"></div> 
+                    <img src="./imagens/Pokebola.gif" alt="" class="imgPokeBola">
+                    <form class="frmIptmNomePokemon">                        
+                        <input type="text" class="inptNomePokemon" placeholder=" Digite o nome do Pokemon "/>
+                    </form>  
+                </div>
             </div>
         </div>
-        <div id="dv22">            
-            <div id="dv221">
-                <div style="height: 10rem;" id="dv2211"></div>
-            </div>            
-            <div id="dv222">
-                <div id="dv2221">
-                    <img src="./imagens/Anterior.png" id="btnAnteriorImagem" >  
-                </div>
-                <div id="dv2222"></div>
-                <div id="dv2223">
-                    <img src="./imagens/Proximo.png" id="btnProximaImagem"> 
-                </div>
-                <form id="form" class="form">                        
-                    <input type="text" id="inptNomePokemon" class="inptNomePokemon" placeholder=" Digite o nome do pokemon"/>
-                </form>    
-            </div>            
-            <div id="dv223">
-                <div id="dv2231"></div>
-            </div>
-            
-            <img id="imgCirculoInterno" src="./imagens/CirculoInterno2.png">
-            <img id="imgCirculo" src="./imagens/Circulo2.png">
-
-        </div>
-        <div id="dv23">
-            <div id="dv231">
-                <div class="ficha" id="dv2311"></div>    
-            </div>            
-            <div id="dv232">
-                <div id="dv2321"></div>
-            </div>            
-            <div id="dv233">
-                <div id="dv2331"></div>
-            </div>            
+        <div class="dvCirculo">
+            <img class="imgCirculo" src="./imagens/Circulo.gif" alt="">
+            <div class="dvCirculoRadius"></div>
+            <img src="./imagens/Proximo.png" class="btnProximaImagem" alt="">
+            <img src="./imagens/Anterior.png" class="btnAnteriorImagem" alt=""> 
+            <div class="dvImagemPrincipal"></div>
+            <div class="dvPokemonNome"></div>                           
+            <div class="dvContador"></div> 
         </div>
     </div>
 </body>

@@ -4,34 +4,36 @@ Dados retirados do site:
 */
 import pokemons from './pokemons.json' assert {type: 'json'}
 
-const inptNomePokemon = document.getElementById("inptNomePokemon")
-const dvContainerImagens = document.getElementById('dv2222')
-const dvImagensD = document.getElementById('dv2321')
-const dvImagensE = document.getElementById('dv2121')
-const btnProximaImagem = document.getElementById('btnProximaImagem')
-const btnAnteriorImagem = document.getElementById('btnAnteriorImagem')
-const dvContainerNome = document.getElementById('dv2211')
-const dvContador = document.getElementById("dv2231")
-let dvDireitaCima = document.getElementById("dv2311")
-let dvDireitaBaixo = document.getElementById("dv2331")
-
+const inptNomePokemon = document.getElementsByClassName("inptNomePokemon")[0]
+const dvContainerImagens = document.getElementsByClassName('dvImagemPrincipal')[0]
+const dvImagensD = document.getElementsByClassName('dvCentroDireita')[0]
+const dvImagensE = document.getElementsByClassName('dvCentroEsquerda')[0]
+const btnProximaImagem = document.getElementsByClassName('btnProximaImagem')[0]
+const btnAnteriorImagem = document.getElementsByClassName('btnAnteriorImagem')[0]
+const dvContainerNome = document.getElementsByClassName('dvPokemonNome')[0]
+const dvContador = document.getElementsByClassName("dvContador")[0]
+let dvTextoCima = document.getElementsByClassName("dvTextoCima")[0]
+let dvTextoBaixo = document.getElementsByClassName("dvTextoBaixo")[0]
 let nomePokemon = ""
 let pokemonsFiltrados = null
 let IndiceAtual = 0 
 
+
 document.onkeydown = teclasNavegacao;
+
+window.addEventListener('resize', function() {pesquisaPokemon(IndiceAtual)});
 
 function teclasNavegacao(tecla) {
   if (pokemonsFiltrados !== null || pokemonsFiltrados !== undefined)
   {
     tecla = tecla || window.event;
-    if (tecla.keyCode == '37') {        
+    if (tecla.keyCode == '37') {
         IndiceAtual--
         if (IndiceAtual == -1)
         {
           IndiceAtual = pokemonsFiltrados.length - 1
         }
-        carregaDados()
+        pesquisaPokemon(IndiceAtual)
     }
     else if (tecla.keyCode == '39') {
       IndiceAtual++
@@ -39,15 +41,18 @@ function teclasNavegacao(tecla) {
       {
         IndiceAtual = 0      
       }
-      carregaDados()      
+      pesquisaPokemon(IndiceAtual)      
     }
   }
-
 }
 
-document.addEventListener('DOMContentLoaded', function() {pesquisaPokemon()})
+document.addEventListener('DOMContentLoaded', function(e) {
+    e.preventDefault()
+    IndiceAtual =  Math.floor(Math.random() * pokemons.length -1)    
+    pesquisaPokemon(IndiceAtual)  
+})
 
-btnProximaImagem.addEventListener("click", function() 
+btnProximaImagem.addEventListener("click", function(e) 
 {
   if (pokemonsFiltrados !== null || pokemonsFiltrados !== undefined)
   {
@@ -56,11 +61,10 @@ btnProximaImagem.addEventListener("click", function()
     {
       IndiceAtual = 0
     }
-    carregaDados()
+    pesquisaPokemon(IndiceAtual)
   }
 })
-
-btnAnteriorImagem.addEventListener("click", function()
+btnAnteriorImagem.addEventListener("click", function(e)
 {
   if (pokemonsFiltrados !== null || pokemonsFiltrados !== undefined)
   {
@@ -72,52 +76,55 @@ btnAnteriorImagem.addEventListener("click", function()
     carregaDados()
   }
 })
-inptNomePokemon.addEventListener("keyup", function() 
-{
-  pesquisaPokemon()
+
+inptNomePokemon.addEventListener("keypress", function(e) 
+{  
+  if (e.key === "Enter")
+  {
+    e.preventDefault()
+    pesquisaPokemon()    
+    return false
+  }
 })
 
-function pesquisaPokemon()
+function pesquisaPokemon(indice = 0)
 {  
-  nomePokemon = document.getElementById("inptNomePokemon").value 
-  IndiceAtual = 0
-  event.preventDefault()
-  pokemonsFiltrados = filtraPokemon(nomePokemon)
-  carregaDados()
+  nomePokemon = inptNomePokemon.value
+  IndiceAtual = indice
+  pokemonsFiltrados = filtraPokemon(nomePokemon)   
+  carregaDados()  
 }
 
 function carregaDados()
 {
-  console.log("entrou carregaDados()")
   dvContainerImagens.innerHTML = ""
   dvImagensD.innerText   = ""
   dvImagensE.innerText   = ""
   dvContainerNome.innerHTML = "" 
-  dvDireitaCima.innerHTML = ""  
-  dvDireitaBaixo.innerHTML = ""
+  dvTextoCima.innerHTML = ""  
+  dvTextoBaixo.innerHTML = ""
   dvContador.innerHTML = ""
 
   if (pokemonsFiltrados[IndiceAtual] !== undefined && pokemonsFiltrados[IndiceAtual] !== null)
   {
     let img = null
     let textoD = null
-    let textoE = null
     let nome = null
 
     img = document.createElement(`img`)
     img.src = pokemonsFiltrados[IndiceAtual].img
     img.id = "img"
     img.className = "img"   
-    dvContainerImagens.appendChild(img)
+    dvContainerImagens.appendChild(img)    
 
     textoD = document.createElement("relatorio")  
     textoD.innerText = `${pokemonsFiltrados[IndiceAtual].name.toUpperCase()}\n\n Altura: ${pokemonsFiltrados[IndiceAtual].height}\nPeso: ${pokemonsFiltrados[IndiceAtual].weight}\nTipo: ${pokemonsFiltrados[IndiceAtual].type}\nPontos fracos: ${pokemonsFiltrados[IndiceAtual].weaknesses}\nProximas evoluções: ${nextEvolution(pokemonsFiltrados[IndiceAtual])}\nCapturado: ${sN(pokemonsFiltrados[IndiceAtual].captured)}`
     textoD.id = "relatorio"
     textoD.className = "relatorio"
-    dvDireitaCima.appendChild(textoD)
+    dvTextoCima.appendChild(textoD)
 
     nome = document.createElement("lblPokemonNome")  
-    nome.innerText = pokemonsFiltrados[IndiceAtual].name  
+    nome.innerText = pokemonsFiltrados[IndiceAtual].name.toUpperCase()  
     nome.id = "lblPokemonNome"
     nome.className = "lblPokemonNome"
     dvContainerNome.appendChild(nome)
@@ -132,38 +139,38 @@ function carregaDados()
 
 function carregaImagensPequenas()
 {
+  let larguraEsquerda = document.getElementsByClassName('dvCentroEsquerda')[0].clientWidth
+  let numeroElementos = Math.trunc(larguraEsquerda / 70)
   let img = null
-  for (let index = 1; index <= 6; index++) {
-
+  for (let index = 1; index <= numeroElementos; index++) {
     if (IndiceAtual + index < pokemonsFiltrados.length)
     {
       img = document.createElement(`img`)
       img.src = pokemonsFiltrados[IndiceAtual + index].img
-      //.replace("imagens", "imagensPequenas")
       img.id = "imgP"
-      img.className = "imgP" 
-      img.style.top = 20
+      img.className = "imgP"       
+      img.addEventListener("click", function() {IndiceAtual = IndiceAtual + index; carregaDados()})
       dvImagensD.appendChild(img)
     }
   }
 
-  for (let index = 5; index >= 0; index--) {
-
+  let larguraDireita = document.getElementsByClassName('dvCentroDireita')[0].clientWidth
+  let numeroDireita = Math.trunc(larguraDireita / 70) 
+  for (let index = numeroDireita -1; index >= 0; index--) {
     if (IndiceAtual - index > 0)
     {      
       img = document.createElement(`img`)
       img.src = pokemonsFiltrados[IndiceAtual - index -1].img
-      //.replace("imagens", "imagensPequenas")
       img.id = "imgP"
-      img.className = "imgP"
-      img.style.top = 20
+      img.className = "imgP"      
+      img.addEventListener("click", function() {IndiceAtual = IndiceAtual - index -1; carregaDados()})
       dvImagensE.appendChild(img)
     }
   }
 }
 
 function filtraPokemon(busca)
-{
+{    
     const resultado = []
     pokemons.forEach(pokemon => {
         if (pokemon.name.toUpperCase().indexOf(busca.toUpperCase()) > -1)
@@ -212,8 +219,8 @@ function dadosGerais()
   }
   let capturados
   capturados = document.createElement(`rodape`)
-  capturados.innerText = `DADOS GERAIS:\n\nMédia de peso dos pokemons: ${(pokemonsFiltrados.reduce(mediaPeso, 0) / pokemonsFiltrados.length).toFixed(2)} kg\nMédia de altura dos pokemons: ${(pokemonsFiltrados.reduce(mediaAltura, 0) / pokemonsFiltrados.length).toFixed(2)} metros\nTodos foram capturados? ${sN(pokemonsFiltrados.reduce(todosCapturados, true)) }`
+  capturados.innerText = `DADOS GERAIS\n\nMédia de peso dos pokemons: ${(pokemonsFiltrados.reduce(mediaPeso, 0) / pokemonsFiltrados.length).toFixed(2)} kg\nMédia de altura dos pokemons: ${(pokemonsFiltrados.reduce(mediaAltura, 0) / pokemonsFiltrados.length).toFixed(2)} metros\nTodos foram capturados? ${sN(pokemonsFiltrados.reduce(todosCapturados, true)) }`
   capturados.id = "dadosGerais"
-  capturados.className = "dadosGerais"        
-  dvDireitaBaixo.appendChild(capturados)      
+  capturados.className = "dadosGerais"  
+  dvTextoBaixo.appendChild(capturados)      
 }
