@@ -3,46 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de pokemons</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Pokemons</title>
     <link rel="stylesheet" href="style.css">
-    <script type="module" src="index.js" defer></script> 
 </head>
 <body>
-    <div class="dvPrincipal">    
-        <div class="dvBarras">
-            <div class="dvCima">
-                <div class="dvTextoImgemCima">
-                    <img src="./imagens/FundoCima.png" alt="" class="imgFundoCima">
-                    <img src="./imagens/Logo.png" alt="" class="imgLogo">
-                    <div class="dvTextoCima"></div>
-                </div>
-            </div>
-            <div class="dvCentro">
-                <div class="dvCentroEsquerda"></div>
-                <div class="dvCentroMeio"></div>
-                <div class="dvCentroDireita"></div>
-            </div>
-            <div class="dvBaixo"> 
-                <div class="dvTextoImgemBaixo">               
-                    <img src="./imagens/FundoBaixo.png" alt="" class="imgFundoBaixo">
-                    <div class="dvTextoBaixo"></div> 
-                    <img src="./imagens/Pokebola.gif" alt="" class="imgPokeBola">
-                    <form class="frmIptmNomePokemon">                        
-                        <input type="text" class="inptNomePokemon" placeholder=" Digite o nome do Pokemon "/>
-                    </form>  
-                </div>
-            </div>
-        </div>
-        <div class="dvCirculo">
-            <img class="imgCirculo" src="./imagens/Circulo.gif" alt="">
-            <div class="dvCirculoRadius"></div>
-            <img src="./imagens/Proximo.png" class="btnProximaImagem" alt="">
-            <img src="./imagens/Anterior.png" class="btnAnteriorImagem" alt=""> 
-            <div class="dvImagemPrincipal"></div>
-            <div class="dvPokemonNome"></div>                           
-            <div class="dvContador"></div> 
-        </div>
-    </div>
+    <main class="mnContainer">
+        <button class="btnVersao1" onclick="window.open('./versao1/index.html', '_blank')">Primeira versão</button>
+        <button class="btnVersao2" onclick="window.open('./versao2/index.html', '_blank')">Segunda versão</button>
+    </main>
 </body>
 </html>

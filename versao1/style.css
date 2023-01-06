@@ -1,0 +1,185 @@
+* {
+    padding: 0;
+    margin: 0;
+    border-style: border-box;
+}
+
+.sctnBarras {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.dvCima {
+    flex-grow: 1;
+    flex-basis: 0;
+    background-image: url('../imagens/Versao1/FundoCima.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 100%;
+}
+
+.dvCentro {
+    background-color: black;
+    height: 8vh;
+    max-height: 300px;
+}
+
+.dvBaixo {
+    flex-grow: 1;
+    flex-basis: 0;
+    background-image: url('../imagens/Versao1/FundoBaixo.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 100%;
+}
+
+.imgLogo {
+    grid-column: 1;
+    grid-row: 1;
+    padding-top: 5vh;
+    width: auto;
+    height: 15vh;
+    justify-self: center;
+}
+
+.dvTextoCima {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 5vh;
+    align-self: flex-end;
+    justify-self: flex-end;
+    text-align: right;
+    color: white;
+    font-size: 1.3vw;
+    font-style: italic;
+    line-height: 1.5;
+}
+
+.dvTextoBaixo {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 5vh;
+    align-self: flex-start;
+    justify-self: flex-end;
+    text-align: right;
+    color: white;
+    font-size: 1.3vw;
+    font-style: italic;
+    line-height: 1.5;
+}
+
+.frmNomePokemon {
+    grid-column: 1;
+    grid-row: 1;
+    text-align: center;
+    padding-top: 35vh;
+}
+
+.inptNomePokemon {
+    width: 12vw;
+    height: 3vw;
+    padding: 1.2vh 2vh;
+    margin: 0.6vh 0;
+    font-size: 1.5vh;
+    box-sizing: border-box;
+    border: 0.8vh solid;
+    box-shadow: inset 0 0 1em red;
+}
+
+.imgPokeBola {
+    grid-column: 1;
+    grid-row: 1;
+    height: 10vh;
+    text-align: center;
+    justify-self: center;
+    padding-top: 27.5vh;
+}
+
+.dvCirculo {
+    background-image: url('../imagens/Versao1/Circulo.gif');
+    background-size: contain;
+    position: absolute;
+    background-color: black;
+    border-radius: 50%;
+    width: calc(170vw / 6);
+    height: calc(170vw / 6);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    border: 1vh solid black;
+    align-items: stretch;
+}
+
+.dvImagemPrincipal {
+    height: 44vh;
+    width: 22vw;
+}
+
+#img {
+    height: auto;
+    width: 90%;
+}
+
+.btnAnteriorImagem {
+    width: 3vw;
+    height: 3vw;
+    align-self: center;
+    justify-self: flex-start;
+}
+
+.btnProximaImagem {
+    width: 3vw;
+    height: 3vw;
+    align-self: center;
+    justify-self: flex-end;
+}
+
+.dvPokemonNome {
+    color: white;
+    font-size: 2vw;
+    font-weight: bold;
+}
+
+.dvContador {
+    color: white;
+    font-size: 1vw;
+}
+
+#imgP {
+    height: 8vh;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.imgContainer {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    text-align: center;
+    align-items: center;
+}
+
+.dvContainerCima {
+    height: 5vh;
+}
+
+.dvCentroEsquerda {
+    width: 35vw;
+    height: auto;
+    float: left;
+    text-align: right;
+}
+
+.dvCentroDireita {
+    width: 35vw;
+    height: auto;
+    float: right;
+    text-align: left;
+}
