@@ -2,17 +2,52 @@
     padding: 0;
     margin: 0;
 }
-.mnContainer{
+.dvContainer{
     display: flex;
-    flex-direction: column;
     height: 100vh;
     background-image: url("./imagens/Fundo.png");
     background-repeat: no-repeat;
     background-size: 100% 100%; 
     text-align: center;
     justify-content: center;
-    align-items: center;    
+    align-items: center; 
 }
-.btnVersao1{
-    margin-bottom: 20px;    
+
+.mnContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    row-gap: 9vw;
+}
+
+.imgEquipe1 {
+    height: 70vh;
+}
+
+.imgEquipe2 {
+    height: 70vh;
+}
+
+.dvCirculo {    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black; 
+    gap: 3vh;
+    height: 25vh;   
+    width: 10vw;  
+    border-radius: 50%;
+}
+
+.imgLogo {
+    height: 20vh;     
+    width: 25vw;
+}
+
+.dvCeterBottom {    
+    height: 20vh;     
+    width: 30vw;
 }

@@ -3,40 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de pokemons</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon</title>
     <link rel="stylesheet" href="style.css">
     <script type="module" src="index.js"></script> 
 </head>
 <body>
-    <main class="mnPrincipal">    
-        <section class="sctnBarras">
-            <div class="dvCima">
-                <img src="../imagens/Logo.png" alt="" class="imgLogo">
-                <div class="dvTextoCima"></div>
+    <div class="dvContainer">
+        <header class="hdrTop" id="hdrTop">
+            <div class="dvTopReportTop" id="dvTopReportTop">
+                <img class="imgLogo" src="../imagens/Logo.png" alt="">
             </div>
-            <div class="dvCentro">                
-                <div class="dvCentroEsquerda"></div>                
-                <div class="dvCentroDireita"></div>
-            </div>
-            <div class="dvBaixo">`
-                <div class="dvTextoBaixo"></div>
-                <img src="../imagens/Pokebola.gif" alt="" class="imgPokeBola"> 
-                <form class="frmNomePokemon">                        
-                    <input type="text" class="inptNomePokemon" placeholder=" Digite o nome do Pokemon "/>
-                </form> 
-            </div>
-        </section>
-        <div class="dvCirculo">
-            <img src="../imagens/Anterior.png" class="btnAnteriorImagem" alt="">
-            <div class="imgContainer">
-                <div class="dvContainerCima"></div>
-                <div class="dvImagemPrincipal"></div>
-                <div class="dvPokemonNome"></div>                           
-                <div class="dvContador"></div>
-            </div>
-            <img src="../imagens/Proximo.png" class="btnProximaImagem" alt="">
-        </div>
-    </main>
+            <div class="dvTopReportBottom" id="dvTopReportBottom"></div>
+        </header>
+        <main class="mnCenter">
+            <div class="dvCenterLeft" id="dvCenterLeft"></div>                
+            <div class="dvCenterRight" id="dvCenterRight"></div>            
+        </main>
+        <footer class="ftrBottom">            
+            <div class="dvBottomReport" id="dvBottomReport"></div>
+            <form class="frmPokemonName">                        
+                <input type="text" class="inptPokemonName" id="inptPokemonName" autocomplete="off" placeholder=" Digite o nome do Pokemon "/>
+            </form> 
+        </footer>
+        <div class="dvCircle" id="dvCircle">
+            <img src="../imagens/Anterior.png" class="btnPrevious" id="btnPrevious" alt="">
+            <section class="sctnContainer">
+                <div class="dvSearchResult" id="dvSearchResult"></div>
+                <div class="dvMainImg" id="dvMainImg"></div>
+                <div class="dvPokemonName" id="dvPokemonName"></div>
+                <div class="dvPokemonCount" id="dvPokemonCount"></div>
+            </section>
+            <img src="../imagens/Proximo.png" class="btnNext" id="btnNext" alt="">
+        </div>          
+    </div>
 </body>
 </html>

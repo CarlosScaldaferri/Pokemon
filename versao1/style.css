@@ -1,185 +1,192 @@
-* {
-    padding: 0;
-    margin: 0;
-    border-style: border-box;
-}
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    .dvContainer { 
+        position: relative;
+        flex-direction: column;
+        margin: 1vw;
+        height: 95vh;
+        border: 0.5vw solid black;
+        display: flex;       
+        flex-direction: column;        
+    }
 
-.sctnBarras {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-}
+    .hdrTop {     
+        display: flex;   
+        flex-direction: column;        
+        flex-grow: 1;
+        flex-basis: 0;
+        background-image: url("../imagens/Versao1/FundoCima.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
 
-.dvCima {
-    flex-grow: 1;
-    flex-basis: 0;
-    background-image: url('../imagens/Versao1/FundoCima.png');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 100%;
-}
+    .mnCenter {        
+        background-color: black;
+        height: 10vh;   
+    }
 
-.dvCentro {
-    background-color: black;
-    height: 8vh;
-    max-height: 300px;
-}
+    .ftrBottom {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        flex-basis: 0;   
+        background-image: url("../imagens/Versao1/FundoBaixo.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
 
-.dvBaixo {
-    flex-grow: 1;
-    flex-basis: 0;
-    background-image: url('../imagens/Versao1/FundoBaixo.png');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 100%;
-}
+    .dvCircle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);   
+        width: calc(170vw / 6);
+        height: calc(170vw / 6);   
+        background-color: black;        
+        border: 0.5vw solid black;
+        border-radius: 50%;
+        background-image: url("../imagens/Versao1/Circulo.gif");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;  
+        display: flex;
+        justify-content: center;
+    }
 
-.imgLogo {
-    grid-column: 1;
-    grid-row: 1;
-    padding-top: 5vh;
-    width: auto;
-    height: 15vh;
-    justify-self: center;
-}
+    .imgLogo {
+        width: auto;
+        height: 14vh;
+    }
 
-.dvTextoCima {
-    grid-column: 1;
-    grid-row: 1;
-    margin: 5vh;
-    align-self: flex-end;
-    justify-self: flex-end;
-    text-align: right;
-    color: white;
-    font-size: 1.3vw;
-    font-style: italic;
-    line-height: 1.5;
-}
+    .dvTopReportChild {
+        color: white;
+        font-size: 3vh;
+        font-style: italic;
+    }
 
-.dvTextoBaixo {
-    grid-column: 1;
-    grid-row: 1;
-    margin: 5vh;
-    align-self: flex-start;
-    justify-self: flex-end;
-    text-align: right;
-    color: white;
-    font-size: 1.3vw;
-    font-style: italic;
-    line-height: 1.5;
-}
+    .dvReportChild{
+        color: white;
+        font-size: 3vh;
+        font-style: italic; 
+    }
+    
+    .dvTopReportTop {
+        height: 35%;
+        width: 100%;
+        text-align: center;
+    }
 
-.frmNomePokemon {
-    grid-column: 1;
-    grid-row: 1;
-    text-align: center;
-    padding-top: 35vh;
-}
+    .dvTopReportBottom {  
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+        text-align: right;
+        padding: 1vw;
+        height: 65%;
+        width: 100%;
+    }   
 
-.inptNomePokemon {
-    width: 12vw;
-    height: 3vw;
-    padding: 1.2vh 2vh;
-    margin: 0.6vh 0;
-    font-size: 1.5vh;
-    box-sizing: border-box;
-    border: 0.8vh solid;
-    box-shadow: inset 0 0 1em red;
-}
+    .MainImg {
+        height: auto;
+        width: 90%;
+    }
 
-.imgPokeBola {
-    grid-column: 1;
-    grid-row: 1;
-    height: 10vh;
-    text-align: center;
-    justify-self: center;
-    padding-top: 27.5vh;
-}
+    .frmPokemonName {
+        height: 20%; 
+        width: 100%;     
+        display: flex;  
+        align-items: center;
+        justify-content: center;
+    }
 
-.dvCirculo {
-    background-image: url('../imagens/Versao1/Circulo.gif');
-    background-size: contain;
-    position: absolute;
-    background-color: black;
-    border-radius: 50%;
-    width: calc(170vw / 6);
-    height: calc(170vw / 6);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    border: 1vh solid black;
-    align-items: stretch;
-}
+    .inptPokemonName {
+        min-width: 12vw;
+        padding: 1.2vh 2vh;
+        margin: 0.6vh 0;
+        font-size: 1.5vh;
+        box-sizing: border-box;
+        border: 0.8vh solid;
+        box-shadow: inset 0 0 1em red;
+    }
 
-.dvImagemPrincipal {
-    height: 44vh;
-    width: 22vw;
-}
+    .dvBottomReport {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+        text-align: right;
+        padding: 1vw;
+        height: 80%;
+        width: 100%;        
+    }
 
-#img {
-    height: auto;
-    width: 90%;
-}
+    .sctnContainer {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        text-align: center;        
+    }
 
-.btnAnteriorImagem {
-    width: 3vw;
-    height: 3vw;
-    align-self: center;
-    justify-self: flex-start;
-}
+    .dvPokemonName{
+        color: white;
+        font-size: 2vw;
+        font-weight: bold;
+    }
 
-.btnProximaImagem {
-    width: 3vw;
-    height: 3vw;
-    align-self: center;
-    justify-self: flex-end;
-}
+    .btnPrevious {
+        width: 3vw;
+        height: 3vw;
+        align-self: center;
+        justify-self: flex-start;
+    }
+    
+    .btnNext {
+        width: 3vw;
+        height: 3vw;
+        align-self: center;
+        justify-self: flex-end;                
+    }
 
-.dvPokemonNome {
-    color: white;
-    font-size: 2vw;
-    font-weight: bold;
-}
+    .dvMainImg {
+        height: 44vh;
+        width: 22vw;
+        color: white;
+        font-size: 2vw;
+        font-weight: bold;
+    }
 
-.dvContador {
-    color: white;
-    font-size: 1vw;
-}
+    .dvSearchResult {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        color: white;
+        font-size: 2vw;
+        font-weight: bold;
+        height: 10vh;
+    }
 
-#imgP {
-    height: 8vh;
-    width: auto;
-    margin-left: auto;
-    margin-right: auto;
-}
+    .dvPokemonCount {
+        color: white;
+        font-size: 1vw;
+        margin-bottom: 2vw;
+    }
 
-.imgContainer {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    text-align: center;
-    align-items: center;
-}
+    .dvCenterLeft {
+        width: 34vw;
+        height: 100%;
+        float: left;
+        text-align: right;
+    }
+    
+    .dvCenterRight {
+        width: 34vw;
+        height: 100%;
+        float: right;
+        text-align: left;
+    }
 
-.dvContainerCima {
-    height: 5vh;
-}
-
-.dvCentroEsquerda {
-    width: 35vw;
-    height: auto;
-    float: left;
-    text-align: right;
-}
-
-.dvCentroDireita {
-    width: 35vw;
-    height: auto;
-    float: right;
-    text-align: left;
-}
+    .imgP {
+        height: 10vh;
+    }

@@ -4,206 +4,140 @@ Dados retirados do site:
 */
 import pokemons from '../pokemons.json' assert {type: 'json'}
 
-const inptNomePokemon = document.getElementsByClassName("inptNomePokemon")[0]
-const dvContainerImagens = document.getElementsByClassName('dvImagemPrincipal')[0]
-const dvImagensD = document.getElementsByClassName('dvCentroDireita')[0]
-const dvImagensE = document.getElementsByClassName('dvCentroEsquerda')[0]
-const btnProximaImagem = document.getElementsByClassName('btnProximaImagem')[0]
-const btnAnteriorImagem = document.getElementsByClassName('btnAnteriorImagem')[0]
-const dvContainerNome = document.getElementsByClassName('dvPokemonNome')[0]
-const dvContador = document.getElementsByClassName("dvContador")[0]
-let dvTextoCima = document.getElementsByClassName("dvTextoCima")[0]
-let dvTextoBaixo = document.getElementsByClassName("dvTextoBaixo")[0]
-let nomePokemon = ""
-let pokemonsFiltrados = null
-let IndiceAtual = 0 
+let globalCurrentIndex = 0
+let globaFilteredPokemons = []
 
-document.onkeydown = teclasNavegacao;
-
-window.addEventListener('resize', function() {
-  pesquisaPokemon(IndiceAtual)
-});
-
-function teclasNavegacao(tecla) {
-  if (pokemonsFiltrados !== null || pokemonsFiltrados !== undefined)
-  {
-    tecla = tecla || window.event;
-    if (tecla.keyCode == '37') {
-        IndiceAtual--
-        if (IndiceAtual == -1)
+function search(pokemons, chavePesquisa)
+{
+    globalCurrentIndex = 0
+    console.clear()
+    globaFilteredPokemons = []
+    pokemons.forEach(pokemon => {
+        if (pokemon.name.toUpperCase().indexOf(chavePesquisa.toUpperCase()) > -1)
         {
-          IndiceAtual = pokemonsFiltrados.length - 1
+          globaFilteredPokemons.push(pokemon)
+          console.log(`${pokemon.name.toUpperCase()}\n\n${report(pokemon)}\n\n`)
         }
-        pesquisaPokemon(IndiceAtual)
-    }
-    else if (tecla.keyCode == '39') {
-      IndiceAtual++
-      if (IndiceAtual == pokemons.length)
-      {
-        IndiceAtual = 0      
-      }
-      pesquisaPokemon(IndiceAtual)      
-    }
-  }
+    });    
+  
+    return globaFilteredPokemons
 }
 
-document.addEventListener('DOMContentLoaded', function(e) {
-    e.preventDefault()
-    IndiceAtual =  Math.floor(Math.random() * pokemons.length -1)    
-    pesquisaPokemon(IndiceAtual)  
-})
-
-btnProximaImagem.addEventListener("click", function(e) 
+function report(pokemon)
 {
-  if (pokemonsFiltrados !== null || pokemonsFiltrados !== undefined)
-  {
-    IndiceAtual++
-    if(IndiceAtual >= pokemonsFiltrados.length)
-    {
-      IndiceAtual = 0
-    }
-    pesquisaPokemon(IndiceAtual)
-  }
-})
-btnAnteriorImagem.addEventListener("click", function(e)
-{
-  if (pokemonsFiltrados !== null || pokemonsFiltrados !== undefined)
-  {
-    IndiceAtual--
-    if(IndiceAtual < 0)
-    {
-      IndiceAtual = pokemonsFiltrados.length -1
-    }
-    carregaDados()
-  }
-})
+    return `Altura: ${pokemon.height}\nPeso: ${pokemon.weight}\nTipo: ${pokemon.type}\nPontos fracos: ${pokemon.weaknesses}\nProximas evoluções: ${nextEvolution(pokemon)}\nCapturado: ${sN(pokemon.captured)}`
+}
 
-inptNomePokemon.addEventListener("keypress", function(e) 
+inptPokemonName.addEventListener("keypress", function(e) 
 {  
   if (e.key === "Enter")
   {
+    document.getElementById("dvPokemonName").innerHTML = ""
+    document.getElementById("dvPokemonCount").innerHTML = ""
+    document.getElementById("dvCenterLeft").innerHTML = ""
+    document.getElementById("dvCenterRight").innerHTML = ""
+    document.getElementById("dvMainImg").innerHTML = ""
+    document.getElementById("dvTopReportBottom").innerHTML = ""
+    document.getElementById("dvBottomReport").innerHTML = ""
+
     e.preventDefault()
-    pesquisaPokemon()    
-    return false
+
+    let inptPokemonName = document.getElementById("inptPokemonName").value
+    let dvMainImg = document.getElementById("dvMainImg")
+
+    dvMainImg.innerHTML = ""
+
+    if (inptPokemonName == "")
+    {
+        globalCurrentIndex = 0
+        console.clear()
+        globaFilteredPokemons = []
+        let nome = document.createElement("lblPokemonNome")  
+        nome.innerText = "Pesquisa vazia"
+        nome.id = "lblPokemonNome"
+        nome.className = "lblPokemonNome"        
+        dvMainImg.appendChild(nome)
+    } else
+    {
+        globaFilteredPokemons = search(pokemons, inptPokemonName)        
+        if (globaFilteredPokemons.length == 0)
+        {
+            let nome = document.createElement("lblPokemonNome")  
+            nome.innerText = "Não encontrado"
+            nome.id = "lblPokemonNome"
+            nome.className = "lblPokemonNome"
+            dvMainImg.appendChild(nome)
+        } else
+        {
+          fillItems()
+        }
+    }
   }
 })
 
-function pesquisaPokemon(indice = 0)
-{      
-  if (inptNomePokemon.value == ""){
-    let nome
-    nome = document.createElement("lblPokemonNome")  
-    dvContainerNome.innerText = ""
-    nome.innerText = "Pesquisa vazia"
-    nome.id = "lblPokemonNome"
-    nome.className = "lblPokemonNome"
-    dvContainerNome.appendChild(nome)
-  } else
-  {
-    nomePokemon = inptNomePokemon.value
-    IndiceAtual = indice
-    pokemonsFiltrados = filtraPokemon(nomePokemon)   
-    carregaDados()  
-  }
-}
-
-function carregaDados()
+function fillItems()
 {
-  dvContainerImagens.innerHTML = ""
-  dvImagensD.innerText   = ""
-  dvImagensE.innerText   = ""
-  dvContainerNome.innerHTML = "" 
-  dvTextoCima.innerHTML = ""
-  dvTextoBaixo.innerHTML = ""
-  dvContador.innerHTML = ""
-  let nome = null
-  console.clear 
-  if (pokemonsFiltrados[IndiceAtual] !== undefined && pokemonsFiltrados[IndiceAtual] !== null)
+  document.getElementById("dvPokemonName").innerHTML = ""
+  document.getElementById("dvPokemonCount").innerHTML = ""
+  document.getElementById("dvCenterLeft").innerHTML = ""
+  document.getElementById("dvCenterRight").innerHTML = ""
+  document.getElementById("dvMainImg").innerHTML = ""
+  document.getElementById("dvTopReportBottom").innerHTML = ""
+  document.getElementById("dvBottomReport").innerHTML = ""
+
+  if (globaFilteredPokemons.length !== 0) 
   {
-    let img = null
-    let textoD = null
-    img = document.createElement(`img`)
-    img.src = pokemonsFiltrados[IndiceAtual].img
-    img.id = "img"
-    img.className = "img"   
-    dvContainerImagens.appendChild(img)    
+    //Carrega elementos do centro
+    let img = document.createElement("img")
+    img.src = globaFilteredPokemons[globalCurrentIndex].img
+    img.id = "MainImg"
+    img.className = "MainImg"   
+    document.getElementById("dvMainImg").appendChild(img) 
 
-    textoD = document.createElement("relatorio")  
-    textoD.innerText = `${pokemonsFiltrados[IndiceAtual].name.toUpperCase()}\n\n Altura: ${pokemonsFiltrados[IndiceAtual].height}\nPeso: ${pokemonsFiltrados[IndiceAtual].weight}\nTipo: ${pokemonsFiltrados[IndiceAtual].type}\nPontos fracos: ${pokemonsFiltrados[IndiceAtual].weaknesses}\nProximas evoluções: ${nextEvolution(pokemonsFiltrados[IndiceAtual])}\nCapturado: ${sN(pokemonsFiltrados[IndiceAtual].captured)}`
-    textoD.id = "relatorio"
-    textoD.className = "relatorio"
-    dvTextoCima.appendChild(textoD)
-    console.log(textoD.innerText)
-
-    nome = document.createElement("lblPokemonNome")  
-    nome.innerText = pokemonsFiltrados[IndiceAtual].name.toUpperCase()  
+    let nome = document.createElement("label")  
+    nome.innerText = globaFilteredPokemons[globalCurrentIndex].name.toUpperCase()  
     nome.id = "lblPokemonNome"
     nome.className = "lblPokemonNome"
-    dvContainerNome.appendChild(nome)
-  
-    dvContador.innerText = `Pokemon ${IndiceAtual + 1} de ${pokemonsFiltrados.length}`
-    
-    dadosGerais()  
-    
-    carregaImagensPequenas()
-  } else {
-    nome = document.createElement("lblPokemonNome")  
-    nome.innerText = "Não encontrado"
-    nome.id = "lblPokemonNome"
-    nome.className = "lblPokemonNome"
-    dvContainerNome.appendChild(nome)
-    
-  }
-}
+    document.getElementById("dvPokemonName").appendChild(nome)
 
-function carregaImagensPequenas()
-{
-  const zoom = (window.outerWidth - 10) / window.innerWidth
-  const numeroImagens = (((window.innerWidth * zoom) / 2) / 110).toFixed();
+    document.getElementById("dvPokemonCount").innerText = `Pokemon ${globalCurrentIndex + 1} de ${globaFilteredPokemons.length}`
 
-  let img
-  for (let index = 1; index <= numeroImagens; index++) {
-    if (IndiceAtual + index < pokemonsFiltrados.length)
-    {
-      img = document.createElement(`img`)
-      img.src = pokemonsFiltrados[IndiceAtual + index].img
-      img.id = "imgP"
-      img.className = "imgP"       
-      img.addEventListener("click", function() {IndiceAtual = IndiceAtual + index; carregaDados()})
-      dvImagensD.appendChild(img)
+    let textR = document.createElement("div")  
+    textR.innerText = report(globaFilteredPokemons[globalCurrentIndex])
+    textR.className = "dvTopReportChild"
+    document.getElementById("dvTopReportBottom").appendChild(textR)
+
+    let bottomReport = document.createElement("div")
+    let weight = `${(globaFilteredPokemons.reduce((a, b) => a + Number(b.weight.replace(" kg", "")), 0) / globaFilteredPokemons.length).toFixed(2)}`
+    let height = `${(globaFilteredPokemons.reduce((a, b) => a + Number(b.height.replace(" m", "")), 0) / globaFilteredPokemons.length).toFixed(2)}`
+    let captured = `${sN(globaFilteredPokemons.reduce((a, b) => a + b.captured, false))}`
+    bottomReport.innerText = `DADOS GERAIS\n\nMédia de peso dos pokemons: ${weight} kg\nMédia de altura dos pokemons: ${height} metros\nTodos foram capturados? ${sN(captured)}` 
+    bottomReport.className = "dvReportChild"  
+    document.getElementById("dvBottomReport").appendChild(bottomReport) 
+    
+    //Carrega imagens pequenas
+    const numeroImagens = Math.floor(document.getElementById("dvCenterRight").offsetWidth / document.getElementById("dvCenterRight").offsetHeight);
+    for (let index = 1; index <= numeroImagens; index++) {
+      if (globalCurrentIndex + index < globaFilteredPokemons.length)
+      {
+        img = document.createElement("img")
+        img.src = globaFilteredPokemons[globalCurrentIndex + index].img
+        img.id = "imgP"
+        img.className = "imgP"       
+        document.getElementById("dvCenterRight").appendChild(img)
+      }
+    }
+    for (let index = numeroImagens -1; index >= 0; index--) {
+      if (globalCurrentIndex - index > 0)
+      { 
+        img = document.createElement("img")
+        img.src = globaFilteredPokemons[globalCurrentIndex - index -1].img
+        img.id = "imgP"
+        img.className = "imgP"      
+        document.getElementById("dvCenterLeft").appendChild(img)
+      }
     }
   }
-  for (let index = numeroImagens -1; index >= 0; index--) {
-    if (IndiceAtual - index > 0)
-    {  
-      img = document.createElement(`img`)
-      img.src = pokemonsFiltrados[IndiceAtual - index -1].img
-      img.id = "imgP"
-      img.className = "imgP"      
-      img.addEventListener("click", function() {IndiceAtual = IndiceAtual - index -1; carregaDados()})
-      dvImagensE.appendChild(img)
-    }
-  }
-}
-
-function filtraPokemon(busca)
-{    
-    const resultado = []
-    pokemons.forEach(pokemon => {
-        if (pokemon.name.toUpperCase().indexOf(busca.toUpperCase()) > -1)
-        {
-            resultado.push(pokemon)
-        }
-    })
-    return resultado
-}
-
-function sN(boleano)
-{
-    if (boleano)
-        return "Sim" 
-    else 
-        return "Não"
 }
 
 function nextEvolution(pokemon)
@@ -223,22 +157,40 @@ function nextEvolution(pokemon)
   return evolucoes
 }
 
-function dadosGerais()
+function sN(boleano)
 {
-  function mediaPeso(soma, pokemon) {
-      return soma + Number(pokemon.weight.replace(" kg", ""))
-  }
-  function mediaAltura(soma, pokemon) {
-      return soma + Number(pokemon.height.replace(" m", ""))
-  }
-  function todosCapturados(soma, pokemon) {
-    return soma && pokemon.captured
-  }
-  let capturados
-  capturados = document.createElement(`rodape`)
-  capturados.innerText = `DADOS GERAIS\n\nMédia de peso dos pokemons: ${(pokemonsFiltrados.reduce(mediaPeso, 0) / pokemonsFiltrados.length).toFixed(2)} kg\nMédia de altura dos pokemons: ${(pokemonsFiltrados.reduce(mediaAltura, 0) / pokemonsFiltrados.length).toFixed(2)} metros\nTodos foram capturados? ${sN(pokemonsFiltrados.reduce(todosCapturados, true)) }`
-  capturados.id = "dadosGerais"
-  capturados.className = "dadosGerais"  
-  dvTextoBaixo.appendChild(capturados)      
-  console.log(capturados.innerText)
+    if (boleano)
+        return "Sim" 
+    else 
+        return "Não"
 }
+
+document.getElementById("btnNext").addEventListener("click", function(e) 
+{
+  if (globaFilteredPokemons !== [])
+  {
+    globalCurrentIndex++
+    if(globalCurrentIndex >= globaFilteredPokemons.length)
+    {
+      globalCurrentIndex = 0
+    }
+    fillItems()
+  }
+})
+document.getElementById("btnPrevious").addEventListener("click", function(e)
+{
+  if (globaFilteredPokemons !== [])
+  {   
+    globalCurrentIndex-- 
+    if(globalCurrentIndex < 0)
+    {
+      globalCurrentIndex = globaFilteredPokemons.length -1
+    }
+    fillItems()
+  }
+})
+
+window.addEventListener('resize', function() {
+  fillItems()
+});
+
