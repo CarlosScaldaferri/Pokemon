@@ -1,93 +1,152 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-.dvContainer{
-    display: flex;
-    flex-direction: column;
-    height: 100vh;  
-}
-.hdrTop{
-    background-image: url("../imagens/Versao2/FundoCima.png");
-    background-repeat: no-repeat;
-    background-size: 100% 100%; 
-    background-color: black;
-    height: 20%;
-    text-align: center;
-    flex-grow: 1;
-} 
-.mnSearch{
-    height: 60%;
-    text-align: center;
-    border-width: 0.4vw;
-    border-style: ridge;
-    Border-color: white; 
-    background-color: black;   
-    flex-grow: 1;   
-}
-.sctnSearchInput{ 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 10%;
-}
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-.sctnItems{    
-    /* background-image: url("../imagens/Versao2/Fundo3.gif"); */
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    height: 90%;   
-    overflow-y: scroll;
-    white-space: pre-line; 
-    border-top-width: 0.4vw;
-    border-style: ridge;
-    Border-color: white; 
-}
-.ftrBootom{
-    background-image: url("../imagens/Versao2/FundoCima.png");
-    background-repeat: no-repeat;
-    background-size: 100% 100%; 
-    background-color: black;
-    height: 20%;
-    white-space: pre-line; 
-    color: white; 
-    text-align: right;
-    padding: 2vh;
-    font-size: 2.5vh;
-    flex-grow: 1;77
-}
-.dvPokemon {
-    background-image: url("../imagens/Versao2/card.png");
-    border: 10px solid gray;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;     
-    margin: 19px;
-    padding: 10px;
-    height: 90%;    
-    background-color: white;
-    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-    color: black;
-    height: fit-content;
-}
-.imgPokemon{
-    background-color: gray;
-    border: 5px solid black;
-    width: 150px;
-    height: 150px;
-}
-.dvNaoEncontrado{
-    color: white;
-    font-size: xx-large;
-}
-.imgLogo{
-    height: 15vh;
-}
-.ingPokeBall{
-    width: 350px;
-    height: 270px;
-}
+    .dvContainer {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;  
+    }
 
+    .hdrTop {
+        background-image: url("../imagens/Versao2/FundoCima.png");
+        background-repeat: no-repeat;
+        background-size: cover; 
+        background-color: black;
+        height: 15%;
+        text-align: center;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    } 
+
+    .mnSearch {
+        height: 75%;
+        text-align: center;
+        background-color: black;   
+        flex-grow: 1;           
+    }
+
+    .sctnSearchInput { 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 10%;
+        gap: 10px
+    }
+
+    .inptSearchInput {
+        min-width: 100px;
+        height: 3vh;
+        font-size: 1vw;
+        border: 0.5vh solid black;
+        text-align: center;
+    }
+
+    .sctnStatus {
+        height: 10%;
+        width: 100%; 
+        background-color: black;  
+        color: white;
+        font-size: 2vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sctnItems {    
+        background-image: url("../imagens/Versao2/Fundo.gif");
+        background-position: center;
+        background-size: 70vw 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        height: 80%;   
+        overflow-y: scroll;
+        white-space: pre-line; 
+        border-top-width: 0.4vw;
+        Border-color: white; 
+    }
+
+    .ftrBootom {
+        background-image: url("../imagens/Versao2/FundoCima.png");
+        background-repeat: no-repeat;
+        background-size: cover; 
+        background-color: black;
+        height: 10%;
+        text-align: right;
+        flex-grow: 1;
+        display: flex;        
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 1.5vh;
+    }
+
+    .dvPokemon {
+        background-image: url("../imagens/Versao2/Fundo2.gif");
+        background-repeat: no-repeat;
+        background-size: cover;     
+        border: 10px solid black;
+        margin: 19px;
+        padding: 10px;
+        background-color: white;
+        box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+        color: white;
+        height: fit-content;
+    }
+
+    .imgPokemon {
+        background-color: white;
+        border: 5px solid black;
+        width: 150px;
+        height: 150px;
+    }
+
+    .dvPokemonReport {
+        text-align: left;
+    }
+
+    .imgLogo {
+        height: 15vh;
+    }
+
+    .ingPokeBall {
+        width: 350px;
+        height: 270px;
+    }
+
+    .dvPokemonName {
+        font-size: 30px;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .sctnIdentification {     
+        display: flex;     
+        align-items: center;
+        padding: 1vh;
+        margin: 1vh;
+        font-size: 1.5vh;
+        font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
+        font-style: italic;
+        gap: 1vh;
+    }
+
+    .dvIdentification {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .imgLabenuLogo {
+        height: 5vh;
+    }
+
+    @media screen and (max-width: 300px) {
+        .imgLogo {
+            width: 100vw;
+        }
+    }

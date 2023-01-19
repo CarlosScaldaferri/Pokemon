@@ -7,19 +7,11 @@
     height: 100vh;
     background-image: url("./imagens/Fundo.png");
     background-repeat: no-repeat;
-    background-size: 100% 100%; 
+    background-size: cover; 
     text-align: center;
     justify-content: center;
     align-items: center; 
-}
-
-.mnContainer {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    row-gap: 9vw;
+    position: relative;
 }
 
 .imgEquipe1 {
@@ -37,17 +29,47 @@
     align-items: center;
     background-color: black; 
     gap: 3vh;
-    height: 25vh;   
-    width: 10vw;  
+    width: calc(85vw / 6);
+    height: calc(85vw / 6);  
     border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);  
 }
 
 .imgLogo {
     height: 20vh;     
     width: 25vw;
+    align-self: flex-start;
 }
 
-.dvCeterBottom {    
-    height: 20vh;     
-    width: 30vw;
+.btnVersao1 {
+    min-width: 5vw;
+    min-height: 6vh;
+    font-size: 2vh;
+    border: 0.1vh solid black;
+    border-radius: 1vh;
+    padding: 1vh;
+}
+
+.btnVersao2 {
+    min-width: 5vw;
+    min-height: 6vh;
+    font-size: 2vh;
+    border: 0.1vh solid black;
+    border-radius: 1vh;
+    padding: 1vh;
+}
+
+.imgLogo {
+    height: 20vh;
+    width: auto;
+}
+
+@media screen and (max-width: 400px) {
+    .imgLogo {
+        height: auto;
+        width: 100vw;
+    }
 }

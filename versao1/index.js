@@ -8,7 +8,7 @@ let globalCurrentIndex = 0
 let globaFilteredPokemons = []
 
 function search(pokemons, chavePesquisa)
-{
+{  
     globalCurrentIndex = 0
     console.clear()
     globaFilteredPokemons = []
@@ -38,7 +38,8 @@ inptPokemonName.addEventListener("keypress", function(e)
     document.getElementById("dvCenterRight").innerHTML = ""
     document.getElementById("dvMainImg").innerHTML = ""
     document.getElementById("dvTopReportBottom").innerHTML = ""
-    document.getElementById("dvBottomReport").innerHTML = ""
+    document.getElementById("btnPrevious").style.display = 'none';
+    document.getElementById("btnNext").style.display = 'none';
 
     e.preventDefault()
 
@@ -63,7 +64,7 @@ inptPokemonName.addEventListener("keypress", function(e)
         if (globaFilteredPokemons.length == 0)
         {
             let nome = document.createElement("lblPokemonNome")  
-            nome.innerText = "Não encontrado"
+            nome.innerText = "Pokemon não encontrado"
             nome.id = "lblPokemonNome"
             nome.className = "lblPokemonNome"
             dvMainImg.appendChild(nome)
@@ -75,7 +76,7 @@ inptPokemonName.addEventListener("keypress", function(e)
   }
 })
 
-function fillItems()
+function fillItems(isToPrintGeneralData = true)
 {
   document.getElementById("dvPokemonName").innerHTML = ""
   document.getElementById("dvPokemonCount").innerHTML = ""
@@ -83,10 +84,13 @@ function fillItems()
   document.getElementById("dvCenterRight").innerHTML = ""
   document.getElementById("dvMainImg").innerHTML = ""
   document.getElementById("dvTopReportBottom").innerHTML = ""
-  document.getElementById("dvBottomReport").innerHTML = ""
+  document.getElementById("btnPrevious").style.display = 'none';
+  document.getElementById("btnNext").style.display = 'none';
 
   if (globaFilteredPokemons.length !== 0) 
   {
+    document.getElementById("btnPrevious").style.display = 'block';
+    document.getElementById("btnNext").style.display = 'block';    
     //Carrega elementos do centro
     let img = document.createElement("img")
     img.src = globaFilteredPokemons[globalCurrentIndex].img
@@ -94,12 +98,13 @@ function fillItems()
     img.className = "MainImg"   
     document.getElementById("dvMainImg").appendChild(img) 
 
-    let nome = document.createElement("label")  
+    let nome = document.createElement("a")  
     nome.innerText = globaFilteredPokemons[globalCurrentIndex].name.toUpperCase()  
     nome.id = "lblPokemonNome"
     nome.className = "lblPokemonNome"
+    nome.href = `https://www.pokemon.com/br/pokedex/${globaFilteredPokemons[globalCurrentIndex].name}`
+    nome.target = "_blank"
     document.getElementById("dvPokemonName").appendChild(nome)
-
     document.getElementById("dvPokemonCount").innerText = `Pokemon ${globalCurrentIndex + 1} de ${globaFilteredPokemons.length}`
 
     let textR = document.createElement("div")  
@@ -107,13 +112,13 @@ function fillItems()
     textR.className = "dvTopReportChild"
     document.getElementById("dvTopReportBottom").appendChild(textR)
 
-    let bottomReport = document.createElement("div")
-    let weight = `${(globaFilteredPokemons.reduce((a, b) => a + Number(b.weight.replace(" kg", "")), 0) / globaFilteredPokemons.length).toFixed(2)}`
-    let height = `${(globaFilteredPokemons.reduce((a, b) => a + Number(b.height.replace(" m", "")), 0) / globaFilteredPokemons.length).toFixed(2)}`
-    let captured = `${sN(globaFilteredPokemons.reduce((a, b) => a + b.captured, false))}`
-    bottomReport.innerText = `DADOS GERAIS\n\nMédia de peso dos pokemons: ${weight} kg\nMédia de altura dos pokemons: ${height} metros\nTodos foram capturados? ${sN(captured)}` 
-    bottomReport.className = "dvReportChild"  
-    document.getElementById("dvBottomReport").appendChild(bottomReport) 
+    if (isToPrintGeneralData)
+    {
+      let weight = `${(globaFilteredPokemons.reduce((a, b) => a + Number(b.weight.replace(" kg", "")), 0) / globaFilteredPokemons.length).toFixed(2)}`
+      let height = `${(globaFilteredPokemons.reduce((a, b) => a + Number(b.height.replace(" m", "")), 0) / globaFilteredPokemons.length).toFixed(2)}`
+      let captured = `${sN(globaFilteredPokemons.reduce((a, b) => a + b.captured, false))}`
+      console.log(`DADOS GERAIS\n\nMédia de peso dos pokemons: ${weight} kg\nMédia de altura dos pokemons: ${height} metros\nTodos foram capturados? ${sN(captured)}`)
+    }
     
     //Carrega imagens pequenas
     const numeroImagens = Math.floor(document.getElementById("dvCenterRight").offsetWidth / document.getElementById("dvCenterRight").offsetHeight);
@@ -174,7 +179,7 @@ document.getElementById("btnNext").addEventListener("click", function(e)
     {
       globalCurrentIndex = 0
     }
-    fillItems()
+    fillItems(false)
   }
 })
 document.getElementById("btnPrevious").addEventListener("click", function(e)
@@ -186,11 +191,11 @@ document.getElementById("btnPrevious").addEventListener("click", function(e)
     {
       globalCurrentIndex = globaFilteredPokemons.length -1
     }
-    fillItems()
+    fillItems(false)
   }
 })
 
 window.addEventListener('resize', function() {
-  fillItems()
+  fillItems(false)
 });
 

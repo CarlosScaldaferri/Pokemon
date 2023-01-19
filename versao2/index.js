@@ -4,54 +4,60 @@
   */
   import pokemons from '../pokemons.json' assert {type: 'json'}
 
-  const btnSearchInput = document.getElementsByClassName("btnSearchInput")[0]
+  const inptSearchInput = document.getElementsByClassName("inptSearchInput")[0]
 
-  btnSearchInput.addEventListener("click", function(){
-      filteredPokemons(pokemons, document.getElementsByClassName("inptSearchInput")[0].value)    
+  inptSearchInput.addEventListener("keypress", function(e) {
+    if (e.key === "Enter")
+    {
+      filteredPokemons(pokemons, document.getElementsByClassName("inptSearchInput")[0].value)
+    }
   })
 
   function filteredPokemons(pokemons, busca)
-  {  
-    const sctnItems = document.getElementsByClassName("sctnItems")[0]
+  { 
+    document.getElementsByClassName("sctnStatus")[0].innerHTML = ""
+    document.getElementsByClassName("sctnItems")[0].innerHTML = ""
+
     if (busca == "")
     {
-      sctnItems.innerHTML = `<div class="dvNaoEncontrado">A chave de pesquisa está vazia</div>`   
+      document.getElementsByClassName("sctnStatus")[0].innerText = "A chave de pesquisa está vazia"   
     }
     else {
       let list = ""
       let pokemonsFiltrados = []
-      let internalReport = ""
-
       pokemons.forEach(pokemon => {
           if (pokemon.name.toUpperCase().indexOf(busca.toUpperCase()) > -1)
           {
-              internalReport = report(pokemon)
-              console.log(internalReport)
-              list += `<div class="dvPokemon">
-                <div class="dvPokemon-image">
-                  <img class="imgPokemon" src="${pokemon.img}" alt="">
-                </div>              
-              ${internalReport}</div>`
+              let internalReport = report(pokemon)
+              console.log("\n\n" + pokemon.name.toUpperCase() + "\n" + internalReport)
+              list +=              
+                  `<div class="dvPokemon">
+                    <a class="dvPokemonName" hRef="https://www.pokemon.com/br/pokedex/${pokemon.name}" target="_blank">${pokemon.name.toUpperCase()}</a>
+                    <div class="dvPokemon-image">
+                    <img class="imgPokemon" src="${pokemon.img}" alt="">
+                    </div>
+                  <div class="dvPokemonReport">${internalReport}</div></div></a>`
               pokemonsFiltrados.push(pokemon)
           }
       })
+
       if (list == "")
       {
-        list = `<div class="dvNaoEncontrado">Pokemon não encontrado</div>`                  
-        document.getElementsByClassName("ftrBootom")[0].innerHTML = ""
+        document.getElementsByClassName("sctnStatus")[0].innerText = "Pokemon não encontrado"        
       } else{
+        document.getElementsByClassName("sctnItems")[0].innerHTML = list
+        document.getElementsByClassName("sctnStatus")[0].innerText = `${pokemonsFiltrados.length} Pokemon(s) encontrado(s)`
         const generalData = `DADOS GERAIS\n\nMédia de peso dos pokemons: ${(pokemonsFiltrados.reduce(mediaPeso, 0) / pokemonsFiltrados.length).toFixed(2)} kg\nMédia de altura dos pokemons: ${(pokemonsFiltrados.reduce(mediaAltura, 0) / pokemonsFiltrados.length).toFixed(2)} metros\nTodos foram capturados? ${sN(pokemonsFiltrados.reduce(todosCapturados, true)) }`
-        console.log(generalData)
-        document.getElementsByClassName("ftrBootom")[0].innerHTML = `<div class="dvGeneralData">${generalData}</div>`        
-      }
-      sctnItems.innerHTML = list;     
+        console.log("\n\n" + generalData)        
+      }           
     }
   }
+
   function report(pokemon)
   {
-      return `${pokemon.name.toUpperCase()}
-                  Altura: ${pokemon.height}\nPeso: ${pokemon.weight}\nTipo: ${pokemon.type}\nPontos fracos: ${pokemon.weaknesses}\nProximas evoluções: ${nextEvolution(pokemon)}\nCapturado: ${sN(pokemon.captured)}`
+      return `Altura: ${pokemon.height}\nPeso: ${pokemon.weight}\nTipo: ${pokemon.type}\nPontos fracos: ${pokemon.weaknesses}\nProximas evoluções: ${nextEvolution(pokemon)}\nCapturado: ${sN(pokemon.captured)}`
   }
+
   function nextEvolution(pokemon)
   {
     let evolucoes = ""
