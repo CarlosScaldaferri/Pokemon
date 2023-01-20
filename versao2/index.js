@@ -13,12 +13,17 @@
     }
   })
 
-  function filteredPokemons(pokemons, busca)
+  window.addEventListener("load", function(event) {
+    event.preventDefault()
+    filteredPokemons(pokemons, "", true)
+  })
+
+  function filteredPokemons(pokemons, busca, isToFillAll = false)
   { 
     document.getElementsByClassName("sctnStatus")[0].innerHTML = ""
     document.getElementsByClassName("sctnItems")[0].innerHTML = ""
 
-    if (busca == "")
+    if (busca == "" && !isToFillAll)
     {
       document.getElementsByClassName("sctnStatus")[0].innerText = "A chave de pesquisa está vazia"   
     }

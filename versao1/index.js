@@ -7,13 +7,20 @@ import pokemons from '../pokemons.json' assert {type: 'json'}
 let globalCurrentIndex = 0
 let globaFilteredPokemons = []
 
-function search(pokemons, chavePesquisa)
+window.addEventListener("load", function(event) {
+  event.preventDefault()
+  globaFilteredPokemons = search(pokemons, "", Math.floor(Math.random() * (150 + 1)), true)
+  fillItems(false)
+})
+
+
+function search(pokemons, chavePesquisa, currentIndex = 0, isToFillAll = false)
 {  
-    globalCurrentIndex = 0
+    globalCurrentIndex = currentIndex
     console.clear()
     globaFilteredPokemons = []
     pokemons.forEach(pokemon => {
-        if (pokemon.name.toUpperCase().indexOf(chavePesquisa.toUpperCase()) > -1)
+        if (pokemon.name.toUpperCase().indexOf(chavePesquisa.toUpperCase()) > -1 || isToFillAll)
         {
           globaFilteredPokemons.push(pokemon)
           console.log(`${pokemon.name.toUpperCase()}\n\n${report(pokemon)}\n\n`)
@@ -28,9 +35,9 @@ function report(pokemon)
     return `Altura: ${pokemon.height}\nPeso: ${pokemon.weight}\nTipo: ${pokemon.type}\nPontos fracos: ${pokemon.weaknesses}\nProximas evoluções: ${nextEvolution(pokemon)}\nCapturado: ${sN(pokemon.captured)}`
 }
 
-inptPokemonName.addEventListener("keypress", function(e) 
+inptPokemonName.addEventListener("keypress", function(event) 
 {  
-  if (e.key === "Enter")
+  if (event.key === "Enter")
   {
     document.getElementById("dvPokemonName").innerHTML = ""
     document.getElementById("dvPokemonCount").innerHTML = ""
@@ -41,7 +48,7 @@ inptPokemonName.addEventListener("keypress", function(e)
     document.getElementById("btnPrevious").style.display = 'none';
     document.getElementById("btnNext").style.display = 'none';
 
-    e.preventDefault()
+    event.preventDefault()
 
     let inptPokemonName = document.getElementById("inptPokemonName").value
     let dvMainImg = document.getElementById("dvMainImg")
@@ -91,7 +98,7 @@ function fillItems(isToPrintGeneralData = true)
   {
     document.getElementById("btnPrevious").style.display = 'block';
     document.getElementById("btnNext").style.display = 'block';    
-    //Carrega elementos do centro
+    //Carrega elementos do centro    
     let img = document.createElement("img")
     img.src = globaFilteredPokemons[globalCurrentIndex].img
     img.id = "MainImg"
